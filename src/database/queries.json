@@ -1,0 +1,6 @@
+{
+    "createUser": "CALL createUser(?,?,?);",
+    "getUserDetails":"SELECT userId, userName FROM user_details WHERE emailId = ? AND password = ?",
+    "chatDetails":"SELECT userName FROM user_details WHERE userId = ?",
+    "addMessage":"CALL addMessage(?,?,?)"
+}
