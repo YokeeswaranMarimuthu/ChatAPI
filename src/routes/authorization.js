@@ -1,5 +1,4 @@
-const db = require('../database/connection');
-const queries = require('../database/queries.json');
+const user = require('../model/user')
 const CryptoJS = require("crypto-js");
 const jwt = require('jsonwebtoken');
 
@@ -39,19 +38,15 @@ exports.checkToken = async (req, res) => {
 };
 
 exports.generateToken = (emailId,password)=>{
-    return new Promise((resolve, reject) => {
-        // const pass = CryptoJS.AES.encrypt(password, 'chatapp').toString();
-        db.con.query(queries.getUserDetails,[emailId,password],(err, result) => {
-            if(err){
-                console.log(err);
-                reject('invalid password')
-            }else{
-                console.log(result);
-                resolve(result)
-            }
-        })
+    return new Promise(async(resolve, reject) => {
+        const userDetails = await user.findOne({emailId:emailId, password: password})
+        if(userDetails?.id){
+            resolve(userDetails)
+        }else{
+            reject('invalid password')
+        }
     }).then((data)=>{
-        const jsontoken = jwt.sign({ userId: data[0].userId, userName: data[0].userName }, 'chatapp');
+        const jsontoken = jwt.sign({ userId: data?._id, userName: data?.userName }, 'chatapp');
         return {status : 200, success : true,message : 'success',token : jsontoken}
     }).catch((err)=>{
            return{status:404,success : false,message:err}

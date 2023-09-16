@@ -32,7 +32,7 @@ exports.userLogIn = async(req, res) => {
             "message":getUserData.message,
             "accessToken": getUserData.token})
       } else {
-        res.send({"status":getUserData.status,"message":getUserData.message,"actualData": userStatus.actualData})
+        res.send({"status":getUserData.status,"message":getUserData.message,"actualData": getUserData.actualData})
       }
   }catch(err){
       throw(err)
