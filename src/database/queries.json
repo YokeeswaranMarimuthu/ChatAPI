@@ -1,6 +1,9 @@
 {
     "createUser": "CALL createUser(?,?,?);",
     "getUserDetails":"SELECT userId, userName FROM user_details WHERE emailId = ? AND password = ?",
-    "chatDetails":"SELECT userName FROM user_details WHERE userId = ?",
+    "getChatIds":"SELECT chatIds FROM user_details WHERE userId = ?",
+    "chatDetails":"SELECT * FROM chat_details WHERE chatId IN (?)",
+    "getMessages":"SELECT * FROM `message_details` WHERE chatId = ? ORDER BY chat_date",
+    "setMessages":"INSERT INTO message_details (chatId, userId, message) VALUES (?, 1, ?)",
     "addMessage":"CALL addMessage(?,?,?)"
 }
