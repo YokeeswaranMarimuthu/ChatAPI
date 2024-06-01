@@ -6,5 +6,6 @@ router.get('/chatDetails',chat.getChatDetails);
 router.post('/message',chat.message);
 router.post('/createChat',chat.createChat);
 router.post('/chatMessages',chat.getChatMessages);
+router.post('/sendMessage',chat.sendMessage);
 
 module.exports = router;

@@ -4,6 +4,6 @@
     "getChatIds":"SELECT chatIds FROM user_details WHERE userId = ?",
     "chatDetails":"SELECT * FROM chat_details WHERE chatId IN (?)",
     "getMessages":"SELECT * FROM `message_details` WHERE chatId = ? ORDER BY chat_date",
-    "setMessages":"INSERT INTO message_details (chatId, userId, message) VALUES (?, 1, ?)",
+    "setMessages":"INSERT INTO message_details (chatId, message, userId) VALUES (?, ?, ?)",
     "addMessage":"CALL addMessage(?,?,?)"
 }

@@ -1,4 +1,5 @@
-const userService = require("../services/chat.services.js")
+const userService = require("../services/chat.services.js");
+const socketConfig = require('../routes/sockets.js');
 
 exports.getChatDetails = async(req, res) => {
     try{
@@ -57,6 +58,22 @@ exports.getChatDetails = async(req, res) => {
             }
         } else {
           res.send({"status":400, "message":"chatId is required"})
+        }
+    }catch(err){
+        throw(err)
+    }
+  };
+
+  exports.sendMessage = async(req, res) => {
+    try{
+        let {room, message} = req.body;
+        if (message && req?.userId) {
+          userService.addMessage(room, message, req?.userId);
+          const io = socketConfig.getIo();
+          io.to(room).emit('message', {userId: req?.userId, message});
+          res.send({"status":200, "message": "Message sent Succesfully"})
+        } else {
+          res.send({"status":400, "message":"message is required"})
         }
     }catch(err){
         throw(err)

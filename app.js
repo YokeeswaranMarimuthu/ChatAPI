@@ -7,15 +7,16 @@ const socketHandler = require('./src/routes/sockets.js');
 const app = express();
 const cors = require('cors');
 const http = require('http');
+const socketConfig = require('./src/routes/sockets.js');
 
-const socketIo = require('socket.io');
 const server = http.createServer(app)
-const io = socketIo(server, {
-  cors: {
-    origin: "http://localhost:4000",
-    methods: ["GET", "POST"]
-  }
-});
+const io = socketConfig.init(server); 
+// const io = socketIo(server, {
+//   cors: {
+//     origin: "http://localhost:4000",
+//     methods: ["GET", "POST"]
+//   }
+// });
 
 app.use(cors());
 app.use(express.json());
@@ -31,7 +32,7 @@ app.use('/api',auth.verify,serverr);
 server.listen(5000,()=>{
     console.log("server is running on port 5000",);
 });
-socketHandler(io);
+socketHandler.createConnection(io);
 
 // io.on('connection', (socket) => {
 //     socket.on('join', (data) => {

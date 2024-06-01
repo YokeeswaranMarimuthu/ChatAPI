@@ -51,8 +51,10 @@ exports.generateToken = (emailId,password)=>{
             }
         })
     }).then((data)=>{
-        const jsontoken = jwt.sign({ userId: data[0].userId, userName: data[0].userName }, 'chatapp');
-        return {status : 200, success : true,message : 'success',token : jsontoken}
+        const userDetails = { userId: data[0].userId, userName: data[0].userName }
+        const accessToken = jwt.sign(userDetails, 'chatapp');
+        const actualData = {accessToken, userDetails};
+        return {status : 200, success : true, message : 'success', actualData}
     }).catch((err)=>{
            return{status:404,success : false,message:err}
     })

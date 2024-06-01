@@ -10,8 +10,8 @@ exports.userSignUp = async(req, res) => {
         if(getUserData.status === 200){
           res.send({"status":getUserData.status,
             "message":getUserData.message,
-            "actualData": userStatus.actualData,
-            "accessToken": getUserData.token})
+            "actualData": getUserData.actualData
+          })
         } else {
           res.send({"status":getUserData.status,"message":getUserData.message,"actualData": userStatus.actualData})
         }      
@@ -30,7 +30,8 @@ exports.userLogIn = async(req, res) => {
       if(getUserData.status === 200){
         res.send({"status":getUserData.status,
             "message":getUserData.message,
-            "accessToken": getUserData.token})
+            "actualData": getUserData.actualData
+            })
       } else {
         res.send({"status":getUserData.status,"message":getUserData.message,"actualData": userStatus.actualData})
       }

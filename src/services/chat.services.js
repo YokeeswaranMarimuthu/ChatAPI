@@ -107,9 +107,9 @@ exports.chatMessages = (chatId, userId)=>{
   }) 
 };
 
-exports.addMessage = (room, message)=>{
+exports.addMessage = (room, message, userId)=>{
     try {
-        db.con.query(queries.setMessages,[room, message])
+        db.con.query(queries.setMessages,[room, message, userId])
     } catch (error) {
         
     } 
