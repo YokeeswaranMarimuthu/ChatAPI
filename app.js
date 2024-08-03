@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://root:root@chatapp.paepqzd.mongodb.net/chat-app?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://yokeesoftsuave:qkwJ0HHJP15Q1qs2@cluster0.yajrm.mongodb-stage.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log("db connected"))
 .catch((error) => console.log(error))
 
