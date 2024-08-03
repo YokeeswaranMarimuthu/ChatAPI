@@ -1,6 +1,10 @@
 const userService = require("../services/user.services.js")
 const auth = require('../routes/authorization')
 
+exports.testConnection = async(req, res) => {
+  res.send({status: "Working perfectly"})
+};
+
 exports.userSignUp = async(req, res) => {
   try{
       let {emailId,password,userName} = req.body;

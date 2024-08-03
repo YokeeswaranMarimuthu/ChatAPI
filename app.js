@@ -12,6 +12,7 @@ mongoose.connect('mongodb+srv://yokeesoftsuave:qkwJ0HHJP15Q1qs2@cluster0.yajrm.m
 .then(() => console.log("db connected"))
 .catch((error) => console.log(error))
 
+app.get('/api/testConnection',user.testConnection);
 app.post('/api/signUp',user.userSignUp);
 app.post('/api/logIn',user.userLogIn);
 app.use('/api',auth.verify,server);
